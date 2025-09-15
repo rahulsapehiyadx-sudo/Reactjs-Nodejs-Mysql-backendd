@@ -7,10 +7,10 @@ exports.registerUser = ( username ,email,  password, callback) => {
 };
 
 // Find user by email and password 
-exports.loginUser = (email, password, callback) => {
+exports.loginUser = (email, callback) => {
 
     const sql = "SELECT * FROM users WHERE email = ?";
-    db.query(sql, [email, password], callback); 
+    db.query(sql, [email], callback); 
 }; 
 
 // Check if email already exists 
@@ -18,5 +18,12 @@ exports.checkUserExists = (email, callback) => {
     const sql = "SELECT * FROM users WHERE email = ? ";
     db.query(sql, [email], callback)
 }
+
+// reset
+exports.resetPassword = (email, hashPassword, callback) => {
+    const sql = "UPDATE users SET password = ? WHERE email = ?";
+    db.query(sql, [ hashPassword,email], callback)
+}
+
 
 
