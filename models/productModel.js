@@ -5,7 +5,7 @@ const product = {
 
     getById: (id, callback) => db.query(" SELECT * FROM product WHERE id = ? ",[id], callback),
 
-    create: (data, callback) => db.query("INSERT INTO product (name, category_id, price, description) VALUES (?,?,?,?) ",[data.name, data.category_id, data.price, data.description],  callback ),
+    create: (data, callback) => db.query("INSERT INTO product (name, category_id, price, description) VALUES (?,?,?,?) ",[data.name, data.category_id || null, data.price, data.description],  callback ),
 
     update: (id, data, callback) => db.query("UPDATE product SET name=? , category_id=?, price=?, description=? WHERE  id = ? ", [data.name, data.category_id, data.price, data.description, id ], callback ),
 
@@ -14,4 +14,4 @@ const product = {
 }
 
 
-module.exports = {product};       
+module.exports = {product};           
